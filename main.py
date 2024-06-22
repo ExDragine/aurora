@@ -133,7 +133,7 @@ async def update():
         _type_: Json
     """
     try:
-        os.system(f"bash {pwd}/update.sh")
+        os.system(f"bash {os.getcwd}/update.sh")
         return "finish"
     except OSError as e:
         return str(e)
@@ -147,11 +147,11 @@ async def photo(test=False):
         File,str: _description_
     """
     try:
-        if not os.path.exists("./data/photo"):
+        if not os.path.exists("/home/exdragine/atmos/img"):
             return "No photo right now."
-        file_list = os.listdir("./data/photo")
+        file_list = os.listdir("/home/exdragine/atmos/img")
         file_list.sort(key=lambda x: os.path.getmtime(os.path.join("./data/photo", x)))
-        latest_file = os.path.join("./data/photo", file_list[-1])
+        latest_file = os.path.join("/home/exdragine/atmos/img", file_list[-1])
         if os.path.exists(latest_file):
             return FileResponse(latest_file)
         else:
